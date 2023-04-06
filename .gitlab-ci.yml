@@ -8,8 +8,8 @@ stages:
 build-job:       
   stage: build
   script:
-    - cd individual-frontend
     - npm install
+    - cd individual-frontend
     - npm run build
     - echo "BUILD SUCCESSFUL"
 
