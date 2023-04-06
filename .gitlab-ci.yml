@@ -9,9 +9,8 @@ build-job:
   stage: build
   script:
     - cd individual-frontend
-    - npm install -g yarn
-    - yarn install
-    - yarn build
+    - npm install
+    - npm build
     - echo "BUILD SUCCESSFUL"
 
 unit-test-job:   
