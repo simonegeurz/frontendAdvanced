@@ -9,7 +9,7 @@ build-job:
   stage: build
   script:
     - npm install
-    - CI=false npm run build
+    - npm run build
     - echo "BUILD SUCCESSFUL"
 
 unit-test-job:   
