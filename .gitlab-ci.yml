@@ -1,0 +1,28 @@
+
+
+stages:         
+  - build
+  - test
+  - deploy
+
+build-job:       
+  stage: build
+  script:
+    - npm install
+    - CI=false npm run build
+    - echo "BUILD SUCCESSFUL"
+
+unit-test-job:   
+  stage: test    
+  script:
+    - echo "Running unit tests... This will take about 60 seconds."
+    - sleep 60
+    - echo "Code coverage is 90%"
+
+
+
+deploy-job:      
+  stage: deploy  
+  script:
+    - echo "Deploying application..."
+    - echo "Application successfully deployed."
