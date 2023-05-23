@@ -59,13 +59,10 @@ function Topnav() {
                         <a className="buttons"><Icon.PersonFill className="IconSelectedButton" />{t("navbar.button2")}</a>
                     )}
                 </Nav>
-
             </Navbar.Collapse>
 
             <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
-
                 <Nav.Link className="navbar-title" href="#"><Icon.Bell /></Nav.Link>
-
                 {/* show if NOT authenticated */}
                 {!isAuthenticated && (
                     < Nav.Link className="navbar-title" onClick={() => loginWithRedirect()}><Icon.PersonCircle className="profile" /></Nav.Link>
