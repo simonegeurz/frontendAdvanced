@@ -1,0 +1,23 @@
+{
+    "navbar": {
+        "button1": "Dashboard  ",
+        "button2": "Profile  ",
+        "button3": "Explore  ",
+        "selectlanguage": "Language",
+        "search": "Search.."
+    },
+    "profile": {
+        "edit": "Edit",
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Logout",
+        "preference": "Preference",
+        "save": "Save changes"
+    },
+    "dashboard":{
+        "What": "  What are your thoughts?",
+        "submit": "Submit",
+        "photo": "Add photo",
+        "placecomment": " Insert comment"
+    }
+}
