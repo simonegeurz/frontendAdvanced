@@ -3,7 +3,7 @@ import {
     screen
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Feedpage from "../feedPage/feedPage";
+import Feed from "../feed/feed";
 import React from "react";
 import {
     useAuth0
@@ -31,7 +31,7 @@ describe("Get component tests", () => {
     it("Test render", async () => {
         render(
             <MemoryRouter>
-                <Feedpage />
+                <Feed />
             </MemoryRouter>
         );
 

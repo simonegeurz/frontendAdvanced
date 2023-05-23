@@ -24,7 +24,8 @@
 }
 
 .card {
-    margin-top: 15px;
+    margin-top: 30px;
+    background-color: rgb(196, 196, 196);
 }
 
 .btnedit {
@@ -52,8 +53,7 @@
 }
 
 .cardComment{
-    background-color: #f0f2f5;
-}
+padding-bottom: 10px;}
 
 .titleComment{
     font-size: small
