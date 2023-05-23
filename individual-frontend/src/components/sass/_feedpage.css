@@ -1,0 +1,74 @@
+.fullPage {
+    padding-top: 70px;
+    background-color: #f0f2f5;
+    height: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.PostInput {
+    border-radius: 10px;
+    background-color: #f0f2f5;
+    border: 1px solid lightgray;
+    padding: 0.3%;
+}
+
+@media (max-width: 900px) {
+    .cardHide {
+        display: none;
+    }
+}
+
+.cardPost {
+    padding: 0% 2%;
+}
+
+.card {
+    margin-top: 15px;
+}
+
+.btnedit {
+    border: none;
+    background-color: white;
+}
+.btneditComment {
+    border: none;
+    background-color: #f0f2f5;
+}
+
+.iconEdit {
+    border: 1px solid black;
+    border-radius: 10%;
+    width: 20px;
+    height: 20px;
+}
+
+.date{
+    font-size: small;
+}
+
+.card-title{
+    margin-bottom: 0;
+}
+
+.cardComment{
+    background-color: #f0f2f5;
+}
+
+.titleComment{
+    font-size: small
+}
+
+.textComment{
+    font-size: small
+}
+
+.cardFriends{
+    margin-bottom: 50px;
+    overflow: auto;
+}
+
+.images{
+    width: 200px;
+    height: 100px;
+}

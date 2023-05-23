@@ -1,0 +1,110 @@
+.navbar-title {
+    display: inline-block;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    color: black;
+    text-decoration: none;
+
+  }
+.navbar-flag{
+  height: 20px;
+  width: auto;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+  #navbar-title {
+    display: inline-block;
+    padding-top: 0.5;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    line-height: inherit;
+    white-space: nowrap;
+    color: black;
+    text-decoration: none;
+    font-size: medium;
+  }
+
+  /* Zoekbalk */
+.search-click {
+  border: none;
+    outline: none;
+    background-size: 22px;
+    background-position: 13px;
+    border-radius: 20px;
+    width: 100px;
+    height: 20px;
+    padding: 15px;
+    transition: all 0.5s;
+    background-color: #D6DBDF;
+    margin-right: 2%;
+  }
+  .search-click:focus {
+    width: 20%;
+    /* padding-left: 50px; */
+  }
+  .search-click {
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+  .search-click input {
+    background: transparent;
+    border: 1px solid #ccc;
+    outline: none;
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    left: 0%;
+    padding: 10px;
+  }
+  .nav-user-profile-dropdown {
+    margin-right:8px;
+  }
+
+  .logout{
+    font-size: small;
+  }
+  
+.IconButton{
+color: black;
+height: 30px;
+width: 30px;
+}
+
+.IconSelectedButton{
+color: #5c8f80;
+height: 30px;
+width: 30px;
+}
+  
+  
+.navbarTop{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.profile{
+  height: 30px;
+width: 30px;
+cursor: pointer;
+}
+
+a{
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.buttons{
+  cursor: pointer;
+}
+

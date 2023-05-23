@@ -1,0 +1,12 @@
+.name {
+    font-weight: bold;
+}
+
+.time{
+    font-size: small;
+    padding-bottom: 5px;
+}
+
+.message{
+font-size: medium;
+}

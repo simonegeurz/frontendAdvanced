@@ -1,0 +1,25 @@
+{
+    
+    "navbar": {
+        "button1": "Startpagina",
+        "button2": "Profiel",
+        "button3": "Verkennen",
+        "selectlanguage": "Taal",
+        "search": "Zoeken.."
+    },
+    "profile": {
+        "edit": "Bewerken",
+        "profile": "Profiel",
+        "settings": "Instellingen",
+        "logout": "Log uit",
+        "preference": "Voorkeur",
+        "save": "Wijzigingen opslaan"
+    },
+    "dashboard":{
+        "What": "  Wat zijn jouw gedachten?",
+        "submit": "Plaats bericht",
+        "photo": "Foto toevoegen",
+        "placecomment": " Voeg opmerking toe"
+    }
+    
+}
