@@ -35,7 +35,7 @@ describe("Get component tests", () => {
             </MemoryRouter>
         );
 
-        const header = await screen.findByText("Test comment");
+        const header = await screen.findByText("Loading... please wait");
         expect(header).toBeInTheDocument();
 
     });

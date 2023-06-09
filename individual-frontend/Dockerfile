@@ -1,19 +1,25 @@
-FROM node:14.16.0-alpine as build
+# download a base image
+FROM node:lts-alpine3.14
 
-WORKDIR /app
 
-ENV PATH /app/node_modules/.bin:$PATH
+# make the 'app' folder the current working directory
+WORKDIR /App
+ 
 
-COPY ./package.json ./
-COPY ./package-lock.json ./
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
 
-RUN npm install --silent
+ 
+# install project dependencies
+RUN npm install
 
-COPY ./ ./
-RUN npm i serve -g
-RUN npm run build
 
-# Stage 2:
-FROM nginx:1.17.1-alpine
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY . .
+ 
 
-COPY --from=build /app/build /usr/share/nginx/html
+# open the port on which the server will start
+EXPOSE 3000
+
+# run the front end server
+CMD [ "npm", "start" ]

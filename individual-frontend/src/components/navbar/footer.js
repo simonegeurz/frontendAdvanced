@@ -13,7 +13,7 @@ function Footer() {
 
     return (
         <div className="footer">
-            <p>footer</p>
+            <p>Simone Geurtz - Fontys - June 2023 - Individual project</p>
         </div> 
     );
 }

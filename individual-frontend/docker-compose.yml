@@ -1,16 +1,71 @@
-version: '3.7'
+version: '3.8'
 
 services:
-
-  individual-project-frontend:
-    container_name: individual-project-frontend
-    build: ./individual-project-frontend
-    volumes:
-      - './:/app'
-      - '/app/node_modules'
+  front-end:
+    image: simonegeurtz/front-end:latest
+    container_name: front-end
     ports:
-      - 3000:3000
-    stdin_open: true
+      - "3000:3000"
+
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
     environment:
-      - CHOKIDAR_USEPOLLING=true
-    command: npm start
+      SA_PASSWORD: "r00t.R00T"
+      ACCEPT_EULA: "Y"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  
+  comment-service:
+    image: simonegeurtz/comment-service:latest
+    ports:
+      - "7123:9002"
+    deploy:
+      restart_policy: 
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
+        window: 120s
+    environment:
+      - ASPNETCORE_URLS=http://+:9002
+      - ConnectionStrings__UserConn="Server=sql-server-db;Initial Catalog=commentdbNEWSimone;User ID=sa; Password=r00t.R00T"
+      - RabbitMq__hostname=rabbitmq
+      - RabbitMq__port=5672
+      - RabbitMq__username=guest
+      - RabbitMq__password=guest
+    depends_on:
+      - rabbitmq
+      - sql-server-db
+    command: sh -c dotnet ef database update
+
+  post-service:
+    image: simonegeurtz/post-service:latest
+    ports:
+      - "7122:9001"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
+        window: 120s
+    environment:
+      - ASPNETCORE_URLS=http://+:9001
+      - ConnectionStrings__UserConn="Server=sql-server-db;Initial Catalog=postdbNEWSimone;User ID=sa; Password=r00t.R00T"
+      - RabbitMq__hostname=rabbitmq
+      - RabbitMq__port=5672
+      - RabbitMq__username=guest
+      - RabbitMq__password=guest
+    depends_on:
+      - rabbitmq
+      - sql-server-db
+    command: sh -c dotnet ef database update
