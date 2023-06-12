@@ -23,9 +23,9 @@ function Feed() {
         var message = event.target.inputMessage.value;
         var time = Date().toString().slice(4, 25)
         var id = (parseInt(newData[0].id) + 1).toString()
-        var post = new Post("32", time, message, "niks", "0", id)
+        var post = new Post("12", time, message, "niks", "0", id)
         try {
-            return axios.post("https://localhost:7122/api/Post/place/32", post, {
+            return axios.post("https://localhost:7122/api/Post/place/12", post, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -42,7 +42,7 @@ function Feed() {
         var postID = event.target.postid.placeholder;
         var id = (parseInt(comments[comments.length - 1].id) + 1).toString()
         console.log(postID);
-        var post = new Comment("32", postID, time, message, "niks", id)
+        var post = new Comment("12", postID, time, message, "niks", id)
         try {
             return axios.post("https://localhost:7237/api/Comment/43", post, {
                 headers: {
@@ -52,6 +52,35 @@ function Feed() {
         } catch (e) {
             throw e;
         }
+    }
+
+    async function deleteUserInfo(){
+        try {
+            return axios.delete("https://localhost:7122/api/Post/deletepost/12", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        } catch (e) {
+            throw e;
+        }
+
+        
+    }
+    async function deleteusercomments(){
+        try {
+            return axios.delete("https://localhost:7237/api/Comment/deletecomment/12", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        } catch (e) {
+            throw e;
+        }
+    }
+    async function deletealluserdata(){
+        deleteUserInfo();
+        deleteusercomments();
     }
 
     useEffect(() => {
@@ -111,6 +140,7 @@ function Feed() {
                     <input name="inputMessage" className="col-7 PostInput" placeholder="Insert message"></input>
                     <button type="submit" className="btn btn-outline-primary col-4"><Icon.ChatLeft />  Place post</button>
                 </form>
+                <button onClick={deletealluserdata} className="btn btn-outline-primary col-4"><Icon.ChatLeft /> delete all my data</button>'
                 <hr />
                 {newData?.map((item) => (
                     <div className="card">

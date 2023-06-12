@@ -25,13 +25,13 @@ services:
     volumes:
       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-  
+
   comment-service:
     image: simonegeurtz/comment-service:latest
     ports:
       - "7123:9002"
     deploy:
-      restart_policy: 
+      restart_policy:
         condition: on-failure
         delay: 40s
         max_attempts: 3
@@ -69,3 +69,10 @@ services:
       - rabbitmq
       - sql-server-db
     command: sh -c dotnet ef database update
+
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
