@@ -81,6 +81,7 @@ function Feed() {
     async function deletealluserdata(){
         deleteUserInfo();
         deleteusercomments();
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -149,7 +150,7 @@ function Feed() {
                             <div className="row">
 
                                 <b className="card-title col-11"></b>
-                                {user.sub = item.userID && (
+                                {item.userID === "12" && (
                                     <button className="btnedit col-1"><Icon.PenFill className="iconEdit" /></button>
                                 )}
                             </div>
@@ -165,10 +166,13 @@ function Feed() {
                                     <button type="submit" className="btn btn-outline-primary col-4"><Icon.ChatLeft />  Place comment</button>
                                 </form>
                                 {comments?.map((comment) => (
-                                    <div className="cardComment card">
+                                    <div className="">
                                         {item.id === comment.postID && (
-                                            <div><p className="card-text date">{comment.time}</p>
-                                                <p className="card-text date">{comment.message}</p></div>
+                                            <div>
+                                            {comment.userID === "12" && (
+                                    <button className="btnedit col-1"><Icon.PenFill className="iconEdit" /></button>
+                                )}<p className="card-text date">{comment.time}</p>
+                                                <p className="card-text date">{comment.message}</p><hr/></div>
                                         )}
                                     </div>
                                 ))}
