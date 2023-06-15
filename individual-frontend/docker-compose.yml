@@ -6,6 +6,8 @@ services:
     container_name: front-end
     ports:
       - "3000:3000"
+    networks:
+      - app_network
 
   sql-server-db:
     container_name: sql-server-db
@@ -15,6 +17,8 @@ services:
     environment:
       SA_PASSWORD: "r00t.R00T"
       ACCEPT_EULA: "Y"
+    networks:
+      - app_network
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -25,6 +29,9 @@ services:
     volumes:
       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - app_network
+   
 
   comment-service:
     image: simonegeurtz/comment-service:latest
@@ -38,7 +45,7 @@ services:
         window: 120s
     environment:
       - ASPNETCORE_URLS=http://+:9002
-      - ConnectionStrings__UserConn="Server=sql-server-db;Initial Catalog=commentdbNEWSimone;User ID=sa; Password=r00t.R00T"
+      - ConnectionStrings__UserConn="Server=34.91.9.181;Database=commentdbNEWSimone;User Id=sqlserver;Password=ok5wje34bdyc;Encrypt=False;"
       - RabbitMq__hostname=rabbitmq
       - RabbitMq__port=5672
       - RabbitMq__username=guest
@@ -47,6 +54,9 @@ services:
       - rabbitmq
       - sql-server-db
     command: sh -c dotnet ef database update
+    networks:
+      - app_network
+    
 
   post-service:
     image: simonegeurtz/post-service:latest
@@ -60,7 +70,7 @@ services:
         window: 120s
     environment:
       - ASPNETCORE_URLS=http://+:9001
-      - ConnectionStrings__UserConn="Server=sql-server-db;Initial Catalog=postdbNEWSimone;User ID=sa; Password=r00t.R00T"
+      - ConnectionStrings__UserConn="Server=34.91.9.181;Database=postdbNEWSimone;User Id=sqlserver;Password=ok5wje34bdyc;Encrypt=False;";
       - RabbitMq__hostname=rabbitmq
       - RabbitMq__port=5672
       - RabbitMq__username=guest
@@ -69,10 +79,28 @@ services:
       - rabbitmq
       - sql-server-db
     command: sh -c dotnet ef database update
+    networks:
+      - app_network
 
-  sonarqube:
-    image: sonarqube:latest
+  gateway:
+    image: simonegeurtz/gateway:latest
     ports:
-      - 9000:9000
-    environment:
-      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+      - "5003:9003"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 40s
+        max_attempts: 3
+        window: 120s
+    depends_on:
+      - post-service
+      - comment-service
+    command: sh -c dotnet ef database update
+    networks:
+      - app_network
+    
+networks:
+  app_network:
+    driver: bridge
+
+  

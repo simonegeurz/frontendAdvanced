@@ -25,7 +25,7 @@ function Feed() {
         var id = (parseInt(newData[0].id) + 1).toString()
         var post = new Post("12", time, message, "niks", "0", id)
         try {
-            return axios.post("https://localhost:7122/api/Post/place/12", post, {
+            return axios.post("http://35.195.223.207/api/Post/place/12", post, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -40,11 +40,14 @@ function Feed() {
         var message = event.target.inputComment.value;
         var time = Date().toString().slice(4, 25);
         var postID = event.target.postid.placeholder;
-        var id = (parseInt(comments[comments.length - 1].id) + 1).toString()
+        const strDescending = [...comments].sort((a, b) =>
+                            parseInt(a.id) > parseInt(b.id) ? -1 : 1,
+                        );
+        var id = (parseInt(strDescending[0].id) + 1).toString()
         console.log(postID);
         var post = new Comment("12", postID, time, message, "niks", id)
         try {
-            return axios.post("https://localhost:7237/api/Comment/43", post, {
+            return axios.post("http://34.22.213.165/api/Comment/43", post, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -56,7 +59,7 @@ function Feed() {
 
     async function deleteUserInfo(){
         try {
-            return axios.delete("https://localhost:7122/api/Post/deletepost/12", {
+            return axios.delete("http://35.195.223.207/api/Post/deletepost/12", {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -69,7 +72,7 @@ function Feed() {
     }
     async function deleteusercomments(){
         try {
-            return axios.delete("https://localhost:7237/api/Comment/deletecomment/12", {
+            return axios.delete("http://34.22.213.165/api/Comment/deletecomment/12", {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -86,7 +89,7 @@ function Feed() {
 
     useEffect(() => {
         async function getPosts() {
-            await fetch("https://localhost:7122/api/Post/554")
+            await fetch("http://35.195.223.207/api/post/3")
                 .then(async (res) => {
                     const response = await res.json();
                     if (res.ok) {
@@ -106,7 +109,7 @@ function Feed() {
                 });
         }
         async function getComments() {
-            await fetch("https://localhost:7237/api/Comment/4")
+            await fetch("http://34.22.213.165/api/comment/4")
                 .then(async (res) => {
                     const response = await res.json();
                     if (res.ok) {
