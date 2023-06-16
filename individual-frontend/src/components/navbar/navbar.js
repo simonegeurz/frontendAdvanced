@@ -48,15 +48,15 @@ function Topnav() {
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <input type="text" className="search-click" name="" placeholder={t("navbar.search")} />
+            <input type="text" className="search-click" name="" placeholder="Search" />
 
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav>
-                    <div className="buttons"><a><Icon.HouseFill className="IconSelectedButton" />{t("navbar.button1")}</a></div>
-                    <a className="buttons" ><Icon.CompassFill className="IconSelectedButton" />{t("navbar.button3")}</a>
+                    <div className="buttons"><a><Icon.HouseFill className="IconSelectedButton" />Home</a></div>
+                    <a className="buttons" ><Icon.CompassFill className="IconSelectedButton" />Explore</a>
 
                     {isAuthenticated && (
-                        <a className="buttons"><Icon.PersonFill className="IconSelectedButton" />{t("navbar.button2")}</a>
+                        <a className="buttons"><Icon.PersonFill className="IconSelectedButton" />Profile</a>
                     )}
                 </Nav>
             </Navbar.Collapse>
@@ -87,11 +87,11 @@ function Topnav() {
                             {user.name}
                         </NavDropdown.Header>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/Profile">{t("profile.profile")}</NavDropdown.Item>
+                        <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
                         <Flags.GB className="navbar-flag" onClick={() => changeLanguage("en")} />
                         <Flags.NL className="navbar-flag" onClick={() => changeLanguage("nl")} />
                         <NavDropdown.Divider />
-                        <NavDropdown.Item className="logout" onClick={() => logoutWithRedirect()}>{t("profile.logout")}</NavDropdown.Item>
+                        <NavDropdown.Item className="logout" onClick={() => logoutWithRedirect()}>Logout</NavDropdown.Item>
                     </NavDropdown>
                 )}
             </Navbar.Collapse>
